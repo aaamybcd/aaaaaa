@@ -1,7 +1,9 @@
 # 示例：.github/workflows/block-user-pr.yml
 name: Block Specific User PR
 on: [pull_request]
-
+env:
+  GH_TOKEN: ${{ github.token }}
+  
 jobs:
   check-user:
     runs-on: ubuntu-latest
