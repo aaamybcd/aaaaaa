@@ -1,8 +1,6 @@
 # 示例：.github/workflows/block-user-pr.yml
 name: Block Specific User PR
 on: [pull_request]
-env:
-  GH_TOKEN: ${{ github.token }}
   
 jobs:
   check-user:
@@ -11,6 +9,7 @@ jobs:
       - name: Check PR Author
         env:
           BLOCKED_USERS: "CodeNinjaEvan,user2,user3"  # 禁止提交 PR 的用户名列表
+          GH_TOKEN: ${{ github.token }}
         run: |
           PR_AUTHOR="${{ github.event.pull_request.user.login }}"
           if [[ "$BLOCKED_USERS" == *"$PR_AUTHOR"* ]]; then
